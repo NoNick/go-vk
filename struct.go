@@ -41904,7 +41904,7 @@ func (s *VideoDecodeUsageInfoKHR) Vulkanize() *_vkVideoDecodeUsageInfoKHR {
 type VideoDecodeVP9CapabilitiesKHR struct {
 // SType = STRUCTURE_TYPE_VIDEO_DECODE_VP9_CAPABILITIES_KHR
 PNext unsafe.Pointer
-MaxLevel 
+MaxLevel int32
 }
 
 // WARNING - struct VideoDecodeVP9CapabilitiesKHR is returned only, which is not yet handled in the binding
