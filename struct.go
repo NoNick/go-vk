@@ -2,6 +2,8 @@
 
 package vk
 
+import "unsafe"
+
 // AabbPositionsKHR: See https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/VkAabbPositionsKHR.html
 type AabbPositionsKHR struct {
 MinX float32
