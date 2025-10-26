@@ -7473,6 +7473,27 @@ func GetImageOpaqueCaptureDescriptorDataEXT(device Device, info *ImageCaptureDes
 	return
 }
 
+// GetPhysicalDeviceProperties2: See https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkGetPhysicalDeviceProperties2.html
+func GetPhysicalDeviceProperties2RayTrace(physicalDevice PhysicalDevice) (PhysicalDeviceProperties2, PhysicalDeviceRayTracingPipelinePropertiesKHR, PhysicalDeviceAccelerationStructurePropertiesKHR) {
+	properties := PhysicalDeviceProperties2{}
+
+	properties.PNext = unsafe.Pointer((&PhysicalDeviceRayTracingPipelinePropertiesKHR{
+		PNext: unsafe.Pointer((&PhysicalDeviceAccelerationStructurePropertiesKHR{}).Vulkanize()),
+	}).Vulkanize())
+
+	// properties is a binding-allocated single return value and will be populated by Vulkan, but requiring translation
+	var pProperties *_vkPhysicalDeviceProperties2 = properties.Vulkanize()
+
+	execTrampoline(vkGetPhysicalDeviceProperties2, uintptr(physicalDevice), uintptr(unsafe.Pointer(pProperties)))
+
+	properties = *(pProperties.Goify())
+	pipelineProperties := *((*_vkPhysicalDeviceRayTracingPipelinePropertiesKHR)(properties.PNext).Goify())
+	structureProperties := *((*_vkPhysicalDeviceAccelerationStructurePropertiesKHR)(pipelineProperties.PNext).Goify())
+
+
+	return properties, pipelineProperties, structureProperties
+}
+
 var vkGetImageOpaqueCaptureDescriptorDataEXT = &vkCommand{"vkGetImageOpaqueCaptureDescriptorDataEXT", 3, true, nil}
 
 // GetImageSparseMemoryRequirements: See https://www.khronos.org/registry/vulkan/specs/1.3-extensions/man/html/vkGetImageSparseMemoryRequirements.html
