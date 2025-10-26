@@ -41909,12 +41909,12 @@ MaxLevel
 type _vkVideoDecodeVP9CapabilitiesKHR struct {
 sType StructureType
 pNext unsafe.Pointer
-maxLevel 
+maxLevel int32
 }
 func (s *_vkVideoDecodeVP9CapabilitiesKHR) Goify() *VideoDecodeVP9CapabilitiesKHR {
   rval := &VideoDecodeVP9CapabilitiesKHR{
   PNext : (unsafe.Pointer)(s.pNext),
-  MaxLevel : ()(s.maxLevel),
+  MaxLevel : (int32)(s.maxLevel),
   }
   return rval
 }
@@ -41923,7 +41923,7 @@ func (s *VideoDecodeVP9CapabilitiesKHR) Vulkanize() *_vkVideoDecodeVP9Capabiliti
   rval := &_vkVideoDecodeVP9CapabilitiesKHR{
   sType : STRUCTURE_TYPE_VIDEO_DECODE_VP9_CAPABILITIES_KHR,/*c1*/
   pNext : (unsafe.Pointer)(s.PNext),/*cb*/
-  maxLevel : ()(s.MaxLevel),/*cb*/
+  maxLevel : (int32)(s.MaxLevel),/*cb*/
   }
   return rval
 }
@@ -41975,18 +41975,18 @@ func (s *VideoDecodeVP9PictureInfoKHR) Vulkanize() *_vkVideoDecodeVP9PictureInfo
 type VideoDecodeVP9ProfileInfoKHR struct {
 // SType = STRUCTURE_TYPE_VIDEO_DECODE_VP9_PROFILE_INFO_KHR
 PNext unsafe.Pointer
-StdProfile 
+StdProfile int32
 }
 
 type _vkVideoDecodeVP9ProfileInfoKHR struct {
 sType StructureType
 pNext unsafe.Pointer
-stdProfile 
+stdProfile int32
 }
 func (s *_vkVideoDecodeVP9ProfileInfoKHR) Goify() *VideoDecodeVP9ProfileInfoKHR {
   rval := &VideoDecodeVP9ProfileInfoKHR{
   PNext : (unsafe.Pointer)(s.pNext),
-  StdProfile : ()(s.stdProfile),
+  StdProfile : (int32)(s.stdProfile),
   }
   return rval
 }
@@ -41995,7 +41995,7 @@ func (s *VideoDecodeVP9ProfileInfoKHR) Vulkanize() *_vkVideoDecodeVP9ProfileInfo
   rval := &_vkVideoDecodeVP9ProfileInfoKHR{
   sType : STRUCTURE_TYPE_VIDEO_DECODE_VP9_PROFILE_INFO_KHR,/*c1*/
   pNext : (unsafe.Pointer)(s.PNext),/*cb*/
-  stdProfile : ()(s.StdProfile),/*cb*/
+  stdProfile : (int32)(s.StdProfile),/*cb*/
   }
   return rval
 }
